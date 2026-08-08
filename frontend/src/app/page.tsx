@@ -130,7 +130,7 @@ export default function LandingPage() {
         <div className="w-full max-w-md">
 
           {/* Heading */}
-          <h1 className="text-2xl font-bold italic">
+          <h1 className="text-4xl font-bold italic">
             Welcome Back
           </h1>
 
@@ -205,19 +205,9 @@ export default function LandingPage() {
                 aria-describedby={
                   errors.email ? 'email-error' : undefined
                 }
-                className="h-7 w-full rounded-none border border-slate-400 bg-slate-100 px-2 text-sm shadow-sm outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-400 aria-invalid:border-red-500"
-                {...register('email')}
+                className="h-7 w-full rounded-none border border-slate-400 bg-slate-100 px-2 text-sm shadow-sm outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-400 aria-invalid:border-red-500 placeholder:text-red-500"
+                {...register('email')} placeholder={errors.password ? 'Required field' : ''} 
               />
-
-              {errors.email && (
-                <p
-                  id="email-error"
-                  className="text-xs text-red-500"
-                  role="alert"
-                >
-                  {errors.email.message}
-                </p>
-              )}
             </div>
 
             {/* Password */}
@@ -237,19 +227,9 @@ export default function LandingPage() {
                 aria-describedby={
                   errors.password ? 'password-error' : undefined
                 }
-                className="h-7 w-full rounded-none border border-slate-400 bg-slate-100 px-2 text-sm shadow-sm outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-400 aria-invalid:border-red-500"
-                {...register('password')}
+                className="h-7 w-full rounded-none border border-slate-400 bg-slate-100 px-2 text-sm shadow-sm outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-400 aria-invalid:border-red-500 placeholder:text-red-500 "
+                {...register('password')} placeholder={errors.password ? 'Required field' : ''} 
               />
-
-              {errors.password && (
-                <p
-                  id="password-error"
-                  className="text-xs text-red-500"
-                  role="alert"
-                >
-                  {errors.password.message}
-                </p>
-              )}
             </div>
 
             {/* Remember me / Forgot password */}
@@ -290,6 +270,15 @@ export default function LandingPage() {
               Sign up
             </Link>
           </p>
+          {errors.password && (
+                <p
+                  id="password-error"
+                  className="text-center pt-5 text-md text-red-500"
+                  role="alert"
+                >
+                  {"Incorrect Email or Password, Try Again"}
+                </p>
+          )}
         </div>
       </div>
     </main>
