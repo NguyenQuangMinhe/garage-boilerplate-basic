@@ -8,15 +8,7 @@ export const metadata: Metadata = { title: 'Team' }
 export default async function TeamPage() {
   await requireAuth()
 
-  const positions = [
-    "lg:col-start-1 lg:row-start-1",
-    "lg:col-start-1 lg:row-start-3",
-    "lg:col-start-2 lg:row-start-2",
-    "lg:col-start-3 lg:row-start-1",
-    "lg:col-start-3 lg:row-start-3",
-  ]
-
-
+  const [left1, left2, middle, right1, right2] = teamMembers
 
   return (
     <div className="space-y-6">
@@ -26,14 +18,22 @@ export default async function TeamPage() {
             <p className="mt-1 text-sm text-zinc-400 text-center">Learn more about the team behind this project.</p>
         </div>
 
-        <div className="grid grid-cols-3 grid-rows-3 gap-6">
-            {teamMembers.map((member, index) => (
-                <div key={member.name} className={positions[index]}>
-                    <TeamTile member={member} />
-                </div>
-            ))}
-        </div>
+        <div className="flex flex-col lg:flex-row justify-center items-stretch gap-6">
 
+            <div className="flex flex-col gap-6 lg:w-80">
+                <TeamTile member={left1} />
+                <TeamTile member={left2} />
+            </div>
+
+            <div className="flex flex-col justify-center lg:w-80">
+                <TeamTile member={middle} />
+            </div>
+
+            <div className="flex flex-col gap-6 lg:w-80">
+                <TeamTile member={right1} />
+                <TeamTile member={right2} />
+            </div>
+        </div>
     </div>
   )
 }

@@ -1,9 +1,4 @@
-type TeamMember = {
-    name: string;
-    role: string;
-    blurb: string;
-    image: string;
-};
+import type { TeamMember } from './team-data'
 
 export function TeamTile({ member }: { member: TeamMember }) {
     return (

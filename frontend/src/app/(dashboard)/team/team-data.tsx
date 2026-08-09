@@ -1,4 +1,11 @@
-export const teamMembers = [
+export type TeamMember = {
+  name: string;
+  role: string;
+  blurb: string;
+  image: string;
+}
+
+export const teamMembers: [TeamMember, TeamMember, TeamMember, TeamMember, TeamMember] = [
   {
     name: 'Reese Lucal Paul',
     role: 'Project Manager',
