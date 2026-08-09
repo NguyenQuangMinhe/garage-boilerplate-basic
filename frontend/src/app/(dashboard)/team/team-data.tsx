@@ -16,13 +16,13 @@ export const teamMembers: [TeamMember, TeamMember, TeamMember, TeamMember, TeamM
     name: 'Perry Tsironis',
     role: 'Developer',
     blurb: 'Information Technology student with a passion for Data Science and problem solving in logical ways.',
-    image: '/placeholder.png',
+    image: '/team-jpg/perry.jpg',
   },
   {
     name: 'Nguyen Quang Minh',
     role: 'Developer',
     blurb: 'Always looking forward to learning new things and applying them.',
-    image: '/placeholder.png',
+    image: '/team-jpg/quang.png',
   },
   {
     name: 'Ming Yan Tan',
@@ -33,8 +33,8 @@ export const teamMembers: [TeamMember, TeamMember, TeamMember, TeamMember, TeamM
   {
     name: 'Jamie Rottura',
     role: 'UX Designer',
-    blurb: 'This is a placeholder for Jamie\'s blurb.',
-    image: '/placeholder.png',
+    blurb: 'Always willing to help others and learn new skills.',
+    image: '/team-jpg/jamie.png',
   }
 
 ];
