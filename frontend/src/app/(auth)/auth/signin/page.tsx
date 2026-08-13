@@ -2,7 +2,7 @@
 //Conflict identification and correction performed with Claude
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -24,6 +24,8 @@ export default function SignInPage() {
     resolver: zodResolver(loginSchema),
   })
 
+  const [loginError, setLoginError] = useState(false)
+
   useEffect(() => {
     if (!loading && user) {
       router.replace('/team')
@@ -40,6 +42,7 @@ export default function SignInPage() {
   if (loading) return <FullPageSpinner />
 
   const onSubmit = async (data: LoginInput) => {
+    setLoginError(false)
     try {
       await signInWithEmail(data.email, data.password)
       toast.success('Signed in successfully')
@@ -180,7 +183,7 @@ export default function SignInPage() {
               Sign up
             </Link>
           </p>
-          {errors.password && (
+          {(errors.email || errors.password || loginError) && (
             <p id="password-error" className="text-center pt-5 text-md text-red-500" role="alert">
               {"Incorrect Email or Password, Try Again"}
             </p>
