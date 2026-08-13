@@ -10,7 +10,7 @@ export function TeamTile({ member }: { member: TeamMember }) {
             />
             <h3 className="mt-4 text-lg font-semibold text-slate-700">{member.name}</h3>
             <p className="text-sm text-slate-500 text-left">{member.role}</p>
-            <p className="mt-3 text-sm text-slate-600 text-left leading-relaxed">{member.blurb}</p>
+            <p className="mt-3 text-sm text-slate-600 text-left leading-relaxed line-clamp-3">{member.blurb}</p>
         </div>
     )
 }
