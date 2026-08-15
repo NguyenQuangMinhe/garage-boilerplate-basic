@@ -52,6 +52,7 @@ export default function SignInPage() {
       if (error instanceof Error && error.message.includes('email-not-verified')) {
         toast.error('Please verify your email before signing in.')
       } else {
+        setLoginError(true)
         toast.error('Invalid email or password')
       }
     }
