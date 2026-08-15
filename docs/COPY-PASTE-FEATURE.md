@@ -12,6 +12,8 @@ their own notes, live-updating, correctly secured so nobody can read or write so
 built and shipped the same way every change goes into this repo: its own branch, verified,
 committed, opened as a pull request.
 
+[![Watch the video](https://img.youtube.com/vi/hCSTrx8dOrE/maxresdefault.jpg)](https://youtu.be/hCSTrx8dOrE)
+
 ---
 
 ## Step 0 — Create a branch

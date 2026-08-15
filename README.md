@@ -4,6 +4,8 @@
 
 **New here? Read the [step-by-step guide](docs/GUIDE.md)** — it walks you from clone to shipping your first feature. The system diagrams are in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
+**Note for the PR** if you cannot merge your pr is because there is a high veulnerability and the system doesn't allow for pr with high vulnerabilities to be merged. Instructions are below to fix this.
+
 ## Stack
 
 | | |
@@ -127,6 +129,25 @@ pnpm run validate         # Check for unreplaced template placeholders
 
 Security is enforced in independent layers — Claude Code guard hooks, HTTP hardening (helmet/CORS/rate limits), token + session-cookie auth, Zod input validation, default-deny Firestore rules, and CI scanning (`pnpm audit`). See [docs/SECURITY.md](docs/SECURITY.md).
 
+### Known `pnpm audit` findings (manual fix)
+
+
+`pnpm audit` currently flags two high-severity CVEs — both transitive, dev/build-time only, not runtime-reachable:
+
+| Package | Issue | Pulled in by |
+|---------|-------|--------------|
+| `js-yaml` | CVE-2026-59870 — quadratic CPU DoS on `!!omap` resolution | eslint's dependency chain (lint-time only) |
+| `nanoid` | Infinite loop when a custom generator's `size` is 0 | postcss, used by Tailwind/Next/Vitest builds (build-time only) |
+
+To patch: add these two lines under `overrides:` in `pnpm-workspace.yaml`, then run `pnpm install`:
+
+```yaml
+  js-yaml: '^4.3.1'
+  nanoid: '^3.3.17'
+```
+
+Confirm with `pnpm audit` — should show 0 high/critical findings.
+
 ## Git Workflow
 
 | Branch | Purpose |
@@ -173,12 +194,10 @@ See [CLAUDE.md](CLAUDE.md) for the full harness reference.
 
 ## Deployment
 
-The frontend deploys to **Vercel** (free Hobby tier, no billing account needed — this app is server-rendered, so it needs a server host, not static hosting). Firestore rules deploy automatically from CI on merge to `main`; the optional backend (Cloud Function) deploys manually and requires Firebase's paid Blaze plan. Full setup: [docs/CI-CD.md](docs/CI-CD.md).
+The frontend deploys to **Vercel** (free Hobby tier, no billing account needed — this app is server-rendered, so it needs a server host, not static hosting). 
+Use this to depoy to Vercel - [DEPLOY-TO-VERCEL.md](DEPLOY-TO-VERCEL.md)
 
-```bash
-npx firebase-tools deploy --only firestore:rules    # rules — free
-npx firebase-tools deploy --only functions          # backend — optional, requires Blaze
-```
+
 
 ## Forking for a Client Project
 
